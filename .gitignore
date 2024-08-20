@@ -1,0 +1,4 @@
+/venv/
+/ntds/.env
+**/__pycache__/
+ntds/db.sqlite3
