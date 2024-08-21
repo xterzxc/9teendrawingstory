@@ -65,7 +65,7 @@ WSGI_APPLICATION = 'ntds.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': os.getenv('DB_ENGINE'),
-        'NAME': os.getenv('DB_NAME'),
+        'NAME': BASE_DIR / os.getenv('DB_NAME'),
     }
 }
 
