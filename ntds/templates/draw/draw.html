@@ -4,13 +4,24 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>DRAW</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{% static "css/draw.css" %}">
     </head>
     <body>
-        
+        <div class="topbar-controls">
+            <input type="color" id="colorPicker" value="#ffffff">
+            <input type="range" id="lineWidth" min="1" max="10" value="3">
+
+            <button id="undoBtn">&lt;</button>
+            <button id="redoBtn">&gt;</button>
+            
+            
+            <button id="clearBtn">Clear</button>
+            <button id="saveBtn">Save</button>
+            <!-- home icon btn, profile icon btn, eraser, undoredo on btns-->
+        </div>
         <canvas id="canvas"></canvas>
         <script src="{% static "js/draw.js" %}"></script>
     </body>
