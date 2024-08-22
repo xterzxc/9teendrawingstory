@@ -25,7 +25,7 @@ function fillBackground(color) {
     context.fillRect(0, 0, canvas.width, canvas.height);
 }
 
-// Заполняем холст фоном при загрузке
+
 fillBackground('#ffffff'); // Белый фон
 
 function getCanvasCoordinates(e) {
@@ -139,8 +139,6 @@ saveBtn.addEventListener('click', function() {
     
     const link = document.createElement('a');
     link.href = dataURL;
-    link.download = 'canvas-image.png'; 
-    link.click();
 });
 
 document.addEventListener('keydown', function(e) {
@@ -155,6 +153,7 @@ document.addEventListener('keydown', function(e) {
 
 function clear(){
     context.clearRect(0, 0, canvas.width, canvas.height);
+    fillBackground('#ffffff');
     undoStack.splice(0, undoStack.length);
     redoStack.splice(0, redoStack.length);
 };  

@@ -19,10 +19,26 @@
             
             
             <button id="clearBtn">Clear</button>
-            <button id="saveBtn">Save</button>
+            <a href="#open-modal"><button id="saveBtn">Save</button></a>
     
             <!-- home icon btn, profile icon btn, eraser, undoredo on btns-->
         </div>
+
+        <div id="open-modal" class="save-window">
+            <div>
+              <a href="#" title="Close" class="modal-close">Close</a>
+              <h1>Save your drawing</h1>
+              <br>
+              <form action="">
+                <label for="title">Title</label>
+                <br>
+                <input type="text" id="title" name="title" class="title"><br><br>
+                <label for="description">Description</label>
+                <input type="text" id="description" name="description" class="description"><br><br>
+                <input type="submit" value="Save" class="save-button">
+              </form>
+            </div>
+          </div>
         <canvas id="canvas"></canvas>
         <script src="{% static "js/draw.js" %}"></script>
     </body>
