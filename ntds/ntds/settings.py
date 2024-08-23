@@ -116,3 +116,14 @@ STATIC_ROOT = 'staticfiles/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+CF_BUCKET = os.getenv('CF_BUCKET')
+CF_ACCOUNT_ID = os.getenv('CF_ACCOUNT_ID')
+CF_UPLOAD_URL = f'https://{CF_ACCOUNT_ID}.r2.cloudflarestorage.com/{CF_BUCKET}/'
+CF_GET_URL = os.getenv('CF_GET_URL')
+CF_ACCESS_KEY = os.getenv('CF_ACCESS_KEY')
+CF_SECRET_ACCESS_KEY = os.getenv('CF_SECRET_ACCESS_KEY')
+CF_REGION = 'us-east-1'
+CF_SERVICE = 's3'
+

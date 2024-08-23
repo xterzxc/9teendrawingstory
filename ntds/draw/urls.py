@@ -3,5 +3,6 @@ from .views import *
 
 
 urlpatterns = [
-    path('', DrawView, name='draw'),
+    path('', DrawingView, name='draw'),
+    path('create/', DrawingCreateView.as_view(), name='draw-create'),
 ]

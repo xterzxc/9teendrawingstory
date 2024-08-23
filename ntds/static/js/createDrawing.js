@@ -9,9 +9,10 @@ canvas.height = document.body.clientHeight;
 var context = canvas.getContext('2d');
 const undoBtn = document.getElementById('undoBtn');
 const redoBtn = document.getElementById('redoBtn');
-const saveBtn = document.getElementById('saveBtn');
 const clearBtn = document.getElementById('clearBtn');
-
+const openModalBtn = document.getElementById('openModalBtn');
+const closeModalBtn = document.getElementById('closeModalBtn');
+const modal = document.getElementById('openModal');
 
 
 var colorPicker = $('#colorPicker');
@@ -26,7 +27,7 @@ function fillBackground(color) {
 }
 
 
-fillBackground('#ffffff'); // Белый фон
+fillBackground('#ffffff');
 
 function getCanvasCoordinates(e) {
     var rect = canvas.getBoundingClientRect();
@@ -134,12 +135,12 @@ function redo() {
 undoBtn.addEventListener('click', undo);
 redoBtn.addEventListener('click', redo);
 
-saveBtn.addEventListener('click', function() {
-    const dataURL = canvas.toDataURL('image/png');
-    
-    const link = document.createElement('a');
-    link.href = dataURL;
-});
+// saveBtn.addEventListener('click', function() {
+
+//     const dataURL = canvas.toDataURL('image/png');
+//     const link = document.createElement('a');
+//     link.href = dataURL;
+// });
 
 document.addEventListener('keydown', function(e) {
     if (e.ctrlKey && e.key === 'z' || e.code === 'KeyZ') {
@@ -158,3 +159,18 @@ function clear(){
     redoStack.splice(0, redoStack.length);
 };  
 clearBtn.addEventListener('click', clear);
+
+
+openModalBtn.addEventListener('click', function() {
+    modal.classList.add('show');
+});
+
+closeModalBtn.addEventListener('click', function() {
+    modal.classList.remove('show');
+});
+
+window.addEventListener('click', function(event) {
+    if (event.target == modal) {
+        modal.classList.remove('show');
+    }
+});

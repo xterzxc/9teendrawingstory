@@ -13,3 +13,5 @@ def generate_link(num, length=8):
         
         encoded.append(random.choice(alphabet))
     return ''.join(reversed(encoded))
+
+print(generate_link(1))

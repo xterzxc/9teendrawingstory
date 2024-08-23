@@ -69,6 +69,12 @@ html, body {
       }
   }
   
+.save-window.show {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+}
+
 .modal-close {
     color: #aaa;
     line-height: 50px;

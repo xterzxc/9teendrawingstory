@@ -19,17 +19,17 @@
             
             
             <button id="clearBtn">Clear</button>
-            <a href="#open-modal"><button id="saveBtn">Save</button></a>
+            <button id="openModalBtn">Save</button>
     
             <!-- home icon btn, profile icon btn, eraser, undoredo on btns-->
         </div>
 
-        <div id="open-modal" class="save-window">
+        <div id="openModal" class="save-window">
             <div>
-              <a href="#" title="Close" class="modal-close">Close</a>
+              <button id='closeModalBtn' title="Close" class="modal-close">Close</button>
               <h1>Save your drawing</h1>
               <br>
-              <form action="">
+              <form id="saveDrawing">
                 <label for="title">Title</label>
                 <br>
                 <input type="text" id="title" name="title" class="title"><br><br>
@@ -40,6 +40,7 @@
             </div>
           </div>
         <canvas id="canvas"></canvas>
-        <script src="{% static "js/draw.js" %}"></script>
+        <script src="{% static "js/uploadDrawing.js" %}"></script>
+        <script src="{% static "js/createDrawing.js" %}"></script>
     </body>
 </html>
