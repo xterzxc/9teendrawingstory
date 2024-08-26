@@ -1,10 +1,15 @@
 {% extends "base/base.html" %}
+{% load static %}
 
 {% block title %} 9teendrawingstory {% endblock %}
-
+<link rel="stylesheet" href="/css/generateText.css">
 {% block content %}
 
-<h1>Homepage</h1>
+<div class="container">
+    <div id="quote" class="quote">Загрузка цитаты...</div>
+</div>
+<script src="{% static 'js/generateText.js' %}"></script>
+
 <a href="/draw"><button>Draw</button></a>
 
 {% endblock content %}

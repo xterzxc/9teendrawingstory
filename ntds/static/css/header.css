@@ -1,0 +1,74 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #2D2F38; /* Темный фон для всего тела */
+}
+
+header {
+    background-color: #3F4262; /* Однородный фон без градиента */
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+header .buttons {
+    display: flex;
+    gap: 15px; /* Расстояние между кнопками */
+}
+
+header a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #32a852; /* Кнопка с зеленым фоном */
+}
+
+header a:hover {
+    background-color: #28a745;
+}
+
+header .login {
+    background-color: #5A5A5A; /* Кнопка для входа с серым фоном */
+}
+
+header .login:hover {
+    background-color: #6E6E6E;
+}
+
+.tag-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.tag {
+    background-color: #354056;
+    color: white;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.tag:hover {
+    background-color: #3E4A68;
+}
+
+.tag h2 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.tag p {
+    margin: 5px 0 0 0;
+    font-size: 12px;
+}
