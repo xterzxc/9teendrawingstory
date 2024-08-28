@@ -2,14 +2,18 @@
 {% load static %}
 
 {% block title %} 9teendrawingstory {% endblock %}
-<link rel="stylesheet" href="/css/generateText.css">
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/index.css'%}">
+{% endblock %}
+    
 {% block content %}
 
-<div class="container">
-    <div id="quote" class="quote">Загрузка цитаты...</div>
-</div>
-<script src="{% static 'js/generateText.js' %}"></script>
+    <div class="container">
+        <div id="quote" class="quote">Loading quote...</div>
+    </div>
+    <script src="{% static 'js/index.js' %}"></script>
 
-<a href="/draw"><button>Draw</button></a>
+    <a href="{% url 'draw'%}"><button>Draw</button></a>
 
 {% endblock content %}

@@ -1,3 +1,12 @@
+.quote {
+    font-size: 1.5em; /* Увеличенный размер текста для удобства чтения */
+    margin-bottom: 20px;
+    font-style: italic; /* Добавление курсивного стиля для цитат */
+    color: #f1c40f; /* Светлый, теплый цвет для цитат */
+    justify-content: center;
+    align-items: center;
+}
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
