@@ -11,6 +11,23 @@ html, body {
 
 .topbar-controls {
     background: black;
+    display: flex;
+    gap: 10px;
+    height: 55px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.left-controls {
+    display: flex;
+    gap: 25px;
+    padding-left: 25px;
+}
+
+.right-controls {
+    display: flex;
+    gap: 25px;
+    padding-right: 25px;
 }
 
 
@@ -75,7 +92,7 @@ html, body {
     pointer-events: auto;
 }
 
-.modal-close {
+.save-window-close {
     color: #aaa;
     line-height: 50px;
     font-size: 40%;
@@ -104,13 +121,13 @@ a {
     height: 100vh;
 }
 
-.modal-window {
+.save-window {
     & > div {
         border-radius: 1rem;
     }
 }
 
-.modal-window div:not(:last-of-type) {
+.save-window div:not(:last-of-type) {
     margin-bottom: 15px;
 }
 
@@ -123,4 +140,121 @@ small {
     color: lightgray;
 }
 
+.description, .title {
+    border: 3px solid transparent;
+    transition: border 0.3s ease;
+}
+
+.description:focus, .title:focus {
+    border: 3px solid #555;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #ccc;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.ico {
+    width: 32px;
+    height: 32px;
+}
+
+.undo, .redo {
+    width: 36px;
+    height: 36px;
+    background-color: #fff;
+    border-radius: 36px;
+    border: 3px solid #555;
+    transition: all 0.3s ease;
+}
+
+.redo {
+    margin-right: 30px;
+}
+
+.undo {
+    margin-left: 30px;
+}
+
+.redo::before {
+    content: "\276F";
+}
+
+.undo::before {
+    content: "\276E";
+}
+
   
+.redo:hover, .undo:hover {
+    border-color: #14519f;
+}
+  
+.redo:hover::after, .undo:hover::after {
+    color: #14519f;
+}
+  
+
+.clear, .save {
+    background-color: #eee;
+    border: none;
+    width: 100px;
+    font-size: 24px;
+    border-radius: 1rem;
+    color: lightcoral;
+    cursor: pointer;
+}
+   
+.clear:active, .save:active {
+    color: white;
+    transform: translateY(0.2rem);
+}
+   
+.clear:hover:not(:disabled), .save:hover:not(:disabled){
+    background: lightcoral;
+    color: white;
+   }
+   
+.clear:disabled, .save:disabled {
+    cursor: auto;
+    color: grey;
+}

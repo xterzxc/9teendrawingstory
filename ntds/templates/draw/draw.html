@@ -5,36 +5,39 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>DRAW</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{% static "css/draw.css" %}">
     </head>
     <body>
         <div class="topbar-controls">
+          <div class="left-controls">
             <input type="color" id="colorPicker" value="#ffffff">
             <input type="range" id="lineWidth" min="1" max="10" value="3">
-
-            <button id="undoBtn">&lt;</button>
-            <button id="redoBtn">&gt;</button>
-            
-            
-            <button id="clearBtn">Clear</button>
-            <button id="openModalBtn">Save</button>
-    
-            <!-- home icon btn, profile icon btn, eraser, undoredo on btns-->
+            <button id="undoBtn" class='undo'></button>
+            <button id="redoBtn" class='redo'></button>
+            <img src="{% static 'icons/brush.svg' %}" alt="brush" class='ico'>
+            <label class="switch">
+                <input type="checkbox" id="modeSwitch">
+                <span class="slider"></span>
+            </label>
+            <img src="{% static 'icons/eraser.svg' %}" alt="eraser" class='ico'>
+          </div>
+          <div class="right-controls">
+              <button id="clearBtn" class="clear">Clear</button>
+              <button id="openModalBtn" class="save">Save</button>
+          </div>
         </div>
 
         <div id="openModal" class="save-window">
             <div>
-              <button id='closeModalBtn' title="Close" class="modal-close">Close</button>
+              <button id='closeModalBtn' title="Close" class="save-window-close">Close</button>
               <h1>Save your drawing</h1>
               <br>
               <form id="saveDrawing">
                 <label for="title">Title</label>
                 <br>
-                <input type="text" id="title" name="title" class="title"><br><br>
+                <input type="text" id="title" name="title" class="title" required><br><br>
                 <label for="description">Description</label>
-                <input type="text" id="description" name="description" class="description"><br><br>
+                <input type="text" id="description" name="description" class="description" required><br><br>
                 <input type="submit" value="Save" class="save-button">
               </form>
             </div>
