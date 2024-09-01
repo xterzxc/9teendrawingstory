@@ -1,10 +1,17 @@
 {% extends "base/base.html" %}
+{% load static %}
 
 {% block title %} 9teendrawingstory {% endblock %}
 
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/index.css'%}">
+{% endblock %}
+    
 {% block content %}
 
-<h1>Homepage</h1>
-<a href="/draw"><button>Draw</button></a>
+    <div class="container">
+        <div id="quote" class="quote">Loading quote...</div>
+    </div>
+    <script src="{% static 'js/index.js' %}"></script>
 
 {% endblock content %}
