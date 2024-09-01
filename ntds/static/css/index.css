@@ -1,26 +1,38 @@
 .quote {
-    font-size: 1.5em; /* Увеличенный размер текста для удобства чтения */
+    font-family: "Bebas Neue", sans-serif;
+    display: flex;
+    font-size: 1.5em;
     margin-bottom: 20px;
-    font-style: italic; /* Добавление курсивного стиля для цитат */
-    color: #f1c40f; /* Светлый, теплый цвет для цитат */
+    font-style: italic; 
+    color: #f1c40f; 
     justify-content: center;
     align-items: center;
+    
+}
+
+header .draw{
+    display: flex;
+    gap: 15px;
+    justify-content: center;
 }
 
 body {
+    font-family: "Bebas Neue", sans-serif;
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #2D2F38; /* Темный фон для всего тела */
+    background-color: #171717; /* Темный фон для всего тела */
 }
 
 header {
-    background-color: #3F4262; /* Однородный фон без градиента */
+    font-family: "Bebas Neue", sans-serif;
+    background-color: #373737; /* Однородный фон без градиента */
     padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: white;
 }
+
+
 
 header .logo {
     font-size: 24px;
@@ -29,24 +41,49 @@ header .logo {
 
 header .buttons {
     display: flex;
-    gap: 15px; /* Расстояние между кнопками */
+    gap: 15px;
 }
 
 header a {
     text-decoration: none;
     color: white;
-    font-size: 16px;
+    font-size: 20px;
     padding: 10px 20px;
     border-radius: 5px;
-    background-color: #32a852; /* Кнопка с зеленым фоном */
+   
 }
-
 header a:hover {
     background-color: #28a745;
 }
+header .logo a, .draw a {
+    background-color: transparent; 
+    color: inherit; 
+}
+
+header .logo a:hover, .draw a:hover {
+    background-color: transparent; 
+    color: inherit; 
+    text-decoration: none; 
+}
+
+header .draw {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    transition: transform 0.3s ease; /* Плавная анимация увеличения */
+}
+header .draw {
+    margin-right: 20px; /* Сдвиг на 20 пикселей вправо */
+}
+
+header .draw:hover {
+    transform: scale(1.3);
+    color: inherit; 
+    text-decoration: none; 
+}
 
 header .login {
-    background-color: #5A5A5A; /* Кнопка для входа с серым фоном */
+    background-color: #5A5A5A; 
 }
 
 header .login:hover {
