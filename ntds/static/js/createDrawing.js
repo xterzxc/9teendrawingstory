@@ -179,3 +179,27 @@ document.addEventListener('keydown', function(e) {
         redo();
     }
 });
+
+
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+        var loader = document.getElementById('loader');
+        var content = document.getElementById('content');
+
+        loader.classList.add('hidden');
+
+        content.classList.remove('hidden');
+        content.classList.add('visible');
+
+
+        setTimeout(function() {
+            loader.remove();
+        }, 500);
+    }, 500);
+});
