@@ -2,7 +2,6 @@ function $(el) {
     return document.getElementById(el.replace(/#/, ''));
 }
 
-
 var canvas = $('#canvas');
 canvas.width = document.body.clientWidth;
 canvas.height = document.body.clientHeight;
@@ -14,18 +13,17 @@ const openModalBtn = document.getElementById('openModalBtn');
 const closeModalBtn = document.getElementById('closeModalBtn');
 const modal = document.getElementById('openModal');
 
-
 var colorPicker = $('#colorPicker');
 var lineWidth = $('#lineWidth');
 
 var undoStack = [];
 var redoStack = [];
+var isDrawingMode = true;
 
 function fillBackground(color) {
     context.fillStyle = color;
     context.fillRect(0, 0, canvas.width, canvas.height);
 }
-
 
 fillBackground('#ffffff');
 
@@ -52,9 +50,15 @@ var start = function(coors) {
 
 var move = function(coors) {
     if (this.isDrawing) {
-        context.strokeStyle = colorPicker.value;
         context.lineJoin = "round";
         context.lineWidth = lineWidth.value;
+
+        if (isDrawingMode) {
+            context.strokeStyle = colorPicker.value;
+        } else {
+            context.strokeStyle = '#ffffff';
+        }
+
         context.lineTo(coors.x, coors.y);
         context.stroke();
     }
@@ -105,7 +109,7 @@ window.onresize = function(e) {
 function restoreState(stack, pop = true) {
     if (stack.length === 0) return;
     const dataURL = stack[stack.length - 1];
-    if (pop) stack.pop()
+    if (pop) stack.pop();
     const img = new Image();
     img.src = dataURL;
     img.onload = () => {
@@ -135,31 +139,22 @@ function redo() {
 undoBtn.addEventListener('click', undo);
 redoBtn.addEventListener('click', redo);
 
-// saveBtn.addEventListener('click', function() {
-
-//     const dataURL = canvas.toDataURL('image/png');
-//     const link = document.createElement('a');
-//     link.href = dataURL;
-// });
-
-document.addEventListener('keydown', function(e) {
-    if (e.ctrlKey && e.key === 'z' || e.code === 'KeyZ') {
-        e.preventDefault(); 
-        undo();
-    } else if (e.ctrlKey && e.key === 'y' || e.code === 'KeyY') {
-        e.preventDefault(); 
-        redo();
-    }
+const modeSwitch = $('#modeSwitch');
+modeSwitch.addEventListener('change', function() {
+    isDrawingMode = !modeSwitch.checked;
 });
 
-function clear(){
+lineWidth.addEventListener('input', function() {
+    context.lineWidth = lineWidth.value;
+});
+
+function clear() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     fillBackground('#ffffff');
     undoStack.splice(0, undoStack.length);
     redoStack.splice(0, redoStack.length);
-};  
+}
 clearBtn.addEventListener('click', clear);
-
 
 openModalBtn.addEventListener('click', function() {
     modal.classList.add('show');
@@ -172,5 +167,15 @@ closeModalBtn.addEventListener('click', function() {
 window.addEventListener('click', function(event) {
     if (event.target == modal) {
         modal.classList.remove('show');
+    }
+});
+
+document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey && e.key === 'z') || e.code === 'KeyZ') {
+        e.preventDefault();
+        undo();
+    } else if ((e.ctrlKey && e.key === 'y') || e.code === 'KeyY') {
+        e.preventDefault();
+        redo();
     }
 });
