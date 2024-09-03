@@ -7,4 +7,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', IndexView.as_view(), name='index'),
     path('draw/', include('draw.urls')),
+    path('usr/', include('users.urls')),
 ]
