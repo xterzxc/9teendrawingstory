@@ -247,15 +247,19 @@ input:checked + .slider:before {
 }
   
 
-.clear, .save {
+.clear, .save, .auth {
     text-decoration: none;
     color: grey;
     font-size: 20px;
     padding: 10px 20px;
     border-radius: 5px;
 }
-   
-.clear:hover, .save:hover {
+ 
+.auth {
+    color: rgb(213, 210, 210);
+}
+
+.clear:hover, .save:hover, .auth:hover {
     background-color: #28a745;
     background-color: transparent; 
     color: inherit; 

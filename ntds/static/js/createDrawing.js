@@ -183,12 +183,17 @@ window.addEventListener('click', function(event) {
 });
 
 document.addEventListener('keydown', function(e) {
-    if ((e.ctrlKey && e.key === 'z') || e.code === 'KeyZ') {
-        e.preventDefault();
-        undo();
-    } else if ((e.ctrlKey && e.key === 'y') || e.code === 'KeyY') {
-        e.preventDefault();
-        redo();
+
+    const isModalOpen = modal.classList.contains('show');
+
+    if (!isModalOpen) {
+        if ((e.ctrlKey && e.key === 'z') || e.code === 'KeyZ') {
+            e.preventDefault();
+            undo();
+        } else if ((e.ctrlKey && e.key === 'y') || e.code === 'KeyY') {
+            e.preventDefault();
+            redo();
+        }
     }
 });
 
