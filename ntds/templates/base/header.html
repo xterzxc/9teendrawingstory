@@ -17,12 +17,11 @@
     <div class="buttons">
         <a href="">Sign up</a> <!-- change for actual urls from users app-->
         <a href="" class="login">Sign in</a>
+
+
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Log Out</button>
+        </form>
     </div>
-
-
-    <form action="{% url 'logout' %}" method="post">
-        {% csrf_token %}
-        <button type="submit">Log Out</button>
-    </form>
-    
 </header>

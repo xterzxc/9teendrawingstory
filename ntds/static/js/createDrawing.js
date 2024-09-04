@@ -25,7 +25,6 @@ function fillBackground(color) {
     context.fillRect(0, 0, canvas.width, canvas.height);
 }
 
-fillBackground('#ffffff');
 
 function getCanvasCoordinates(e) {
     var rect = canvas.getBoundingClientRect();
@@ -36,8 +35,13 @@ function getCanvasCoordinates(e) {
 }
 
 function saveState() {
-    undoStack.push(canvas.toDataURL());
+    const currentCanvasState = canvas.toDataURL();
+    undoStack.push(currentCanvasState);
     redoStack = [];
+
+    localStorage.setItem('canvasState', currentCanvasState);
+    localStorage.setItem('undoStack', JSON.stringify(undoStack));
+    localStorage.setItem('redoStack', JSON.stringify(redoStack));
 }
 
 var start = function(coors) {
@@ -106,10 +110,8 @@ window.onresize = function(e) {
     }
 };
 
-function restoreState(stack, pop = true) {
-    if (stack.length === 0) return;
-    const dataURL = stack[stack.length - 1];
-    if (pop) stack.pop();
+function restoreState(dataURL) {
+    if (!dataURL) return;
     const img = new Image();
     img.src = dataURL;
     img.onload = () => {
@@ -117,23 +119,31 @@ function restoreState(stack, pop = true) {
         context.drawImage(img, 0, 0);
     };
 }
-
 function undo() {
     if (undoStack.length > 1) {
         redoStack.push(undoStack.pop());
-        restoreState(undoStack, false);
+        restoreState(undoStack[undoStack.length - 1]);
     } else if (undoStack.length === 1) {
         redoStack.push(undoStack.pop());
         context.clearRect(0, 0, canvas.width, canvas.height);
+        fillBackground('#ffffff');
     }
+
+    localStorage.setItem('canvasState', canvas.toDataURL());
+    localStorage.setItem('undoStack', JSON.stringify(undoStack));
+    localStorage.setItem('redoStack', JSON.stringify(redoStack));
 }
 
 function redo() {
     if (redoStack.length > 0) {
         const lastState = redoStack.pop();
         undoStack.push(lastState);
-        restoreState(undoStack, false);
+        restoreState(lastState);
     }
+
+    localStorage.setItem('canvasState', canvas.toDataURL());
+    localStorage.setItem('undoStack', JSON.stringify(undoStack));
+    localStorage.setItem('redoStack', JSON.stringify(redoStack));
 }
 
 undoBtn.addEventListener('click', undo);
@@ -153,6 +163,8 @@ function clear() {
     fillBackground('#ffffff');
     undoStack.splice(0, undoStack.length);
     redoStack.splice(0, redoStack.length);
+
+    localStorage.removeItem('canvasState');
 }
 clearBtn.addEventListener('click', clear);
 
@@ -202,4 +214,32 @@ document.addEventListener('DOMContentLoaded', function() {
             loader.remove();
         }, 500);
     }, 500);
+
+
+    const savedImageData = localStorage.getItem('canvasState');
+    if (savedImageData) {
+        const img = new Image();
+        img.src = savedImageData;
+        img.onload = function() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.drawImage(img, 0, 0);
+        };
+    } else {
+        fillBackground('#ffffff');
+    }
+
+    const savedUndoStack = localStorage.getItem('undoStack');
+    const savedRedoStack = localStorage.getItem('redoStack');
+
+    if (savedUndoStack) {
+        undoStack = JSON.parse(savedUndoStack);
+    } else {
+        undoStack = [];
+    }
+
+    if (savedRedoStack) {
+        redoStack = JSON.parse(savedRedoStack);
+    } else {
+        redoStack = [];
+    }
 });
