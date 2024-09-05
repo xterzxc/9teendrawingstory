@@ -12,7 +12,8 @@ if os.path.exists(dotenv_path):
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = os.getenv('DEBUG')
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
+DEBUG_TOOLBAR = os.getenv('DEBUG_TOOLBAR', 'False') == 'True'
 
 ALLOWED_HOSTS = ['*']
 
@@ -28,7 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'draw',
-    'profile',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -40,6 +41,13 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+if DEBUG_TOOLBAR:
+    MIDDLEWARE.insert(
+        MIDDLEWARE.index('django.contrib.auth.middleware.AuthenticationMiddleware'),
+        'debug_toolbar.middleware.DebugToolbarMiddleware'
+    )
+
 
 ROOT_URLCONF = 'ntds.urls'
 
@@ -69,6 +77,24 @@ DATABASES = {
         'NAME': BASE_DIR / os.getenv('DB_NAME'),
     }
 }
+
+
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://redis:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+
+
+
+INTERNAL_IPS = [
+    '127.0.0.1', # real ip 
+]
 
 
 
@@ -112,7 +138,6 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = 'staticfiles/'
-MEDIA_ROOT = BASE_DIR / 'media'
 
 
 
@@ -135,4 +160,4 @@ CF_SERVICE = 's3'
 
 LOGIN_REDIRECT_URL = "index"
 LOGOUT_REDIRECT_URL = "index"
-AUTH_USER_MODEL = 'users.CustomUser'
+AUTH_USER_MODEL = 'users.User'
