@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'draw',
+    'profile',
 ]
 
 MIDDLEWARE = [
@@ -103,12 +104,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+MEDIA_URL = '/media/'
+
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
 STATIC_ROOT = 'staticfiles/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 
 
 
@@ -130,3 +135,4 @@ CF_SERVICE = 's3'
 
 LOGIN_REDIRECT_URL = "index"
 LOGOUT_REDIRECT_URL = "index"
+AUTH_USER_MODEL = 'users.CustomUser'
