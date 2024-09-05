@@ -10,7 +10,6 @@
     <div class="draw">
         <a href="{% url 'draw'%}" > - Draw -</a>
     </div>  
-
     {% if user.is_authenticated %}
         <div class="profile-circle">
             <img src="{{ user.profile.image.url }}" alt="Profile">
@@ -21,11 +20,10 @@
         </form>
     {% else %}
         <div class="buttons">
-            <a href="">Sign up</a> <!-- change for actual urls from users app-->
-            <a href="" class="login">Sign in</a>
+            <a href="{% url 'signup' %}">Sign up</a>
+            <a href="{% url 'login' %}" class="login">Sign in</a>
         </div>
     {% endif %}
 
 
-    
-</header>
+</header> 

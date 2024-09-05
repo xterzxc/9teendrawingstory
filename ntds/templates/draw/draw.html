@@ -42,6 +42,8 @@
           </div>
         </div>
 
+
+        {% if user.is_authenticated %}
         <div id="openModal" class="save-window">
             <div>
               <button id='closeModalBtn' title="Close" class="save-window-close">Close</button>
@@ -57,6 +59,20 @@
               </form>
             </div>
           </div>
+        {% else %}
+        <div id="openModal" class="save-window">
+          <div>
+            <button id='closeModalBtn' title="Close" class="save-window-close">Close</button>
+            <h1>Sign up or</h1>
+            <h1>login to</h1>
+            <h1>save your drawing</h1>
+            <br>
+            <a href="{% url 'signup' %}" class='auth'>Sign Up</a>
+            <a href="{% url 'login' %}" class='auth'>Login</a>
+
+          </div>
+        </div>
+        {% endif %}
         <canvas id="canvas"></canvas>
         </div>
         <script src="{% static "js/uploadDrawing.js" %}"></script>
