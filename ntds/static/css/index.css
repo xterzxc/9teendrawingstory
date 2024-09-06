@@ -10,15 +10,59 @@
     
 }
 
-header .draw{
-    display: flex;
-    justify-content: center;
-}
 
 body {
     font-family: "Bebas Neue", sans-serif;
     margin: 0;
     background-color: #262626;
+}
+
+
+.tag-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.tag {
+    background-color: #354056;
+    color: white;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.tag:hover {
+    background-color: #3E4A68;
+}
+
+.tag h2 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.tag p {
+    margin: 5px 0 0 0;
+    font-size: 12px;
+}
+
+
+.profile-circle {
+    position: absolute;
+    top: 10px;  
+    right: 100px; 
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%; 
+    overflow: hidden; 
+    border: 2px solid #fff; 
+}
+
+.profile-circle img {
+    width: 100%; 
+    height: 100%;
+    object-fit: cover; 
 }
 
 header {
@@ -86,33 +130,9 @@ header .login:hover {
     background-color: #6E6E6E;
 }
 
-.tag-container {
+header .draw{
     display: flex;
     justify-content: center;
-    margin-top: 20px;
-}
-
-.tag {
-    background-color: #354056;
-    color: white;
-    padding: 10px 20px;
-    margin: 0 10px;
-    border-radius: 10px;
-    text-align: center;
-}
-
-.tag:hover {
-    background-color: #3E4A68;
-}
-
-.tag h2 {
-    margin: 0;
-    font-size: 16px;
-}
-
-.tag p {
-    margin: 5px 0 0 0;
-    font-size: 12px;
 }
 
 
@@ -147,19 +167,8 @@ header .form-button button:focus {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.profile-circle {
-    position: absolute;
-    top: 10px;  
-    right: 100px; 
-    width: 50px; 
-    height: 50px; 
-    border-radius: 50%; 
-    overflow: hidden; 
-    border: 2px solid #fff; 
+.ico {
+    width: 18px;
+    height: 18px;
 }
 
-.profile-circle img {
-    width: 100%; 
-    height: 100%;
-    object-fit: cover; 
-}
