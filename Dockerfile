@@ -1,13 +1,17 @@
-FROM python:3.12-slim
-
+FROM python:3.11.4-slim-bullseye
 WORKDIR /app
 
+ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE 1
+
+# install system dependencies
+RUN apt-get update
+
+# install dependencies
+RUN pip install --upgrade pip
 COPY requirements.txt /app/
+RUN pip install -r requirements.txt
 
-RUN pip install --no-cache-dir -r requirements.txt
+COPY ./ntds/ /app
 
-COPY ntds/ /app/
-
-EXPOSE 8000
-
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+ENTRYPOINT [ "gunicorn", "ntds.wsgi", "-b", "0.0.0.0:8000"]
