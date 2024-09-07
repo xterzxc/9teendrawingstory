@@ -9,6 +9,7 @@ from .utils import CF_ACCESS
 def DrawingView(request):
     return render(request, 'draw/draw.html')
 
+
 class DrawingCreateView(CreateView, CF_ACCESS):
     http_method_names = ['post']
     model = Drawing
@@ -29,6 +30,7 @@ class DrawingCreateView(CreateView, CF_ACCESS):
             return JsonResponse(cf_upload, status=500)
 
         self.object = form.save(commit=False)
+        self.object.owner = self.request.user
         self.object.imgname = image.name
         self.object.imglink = CF_GET_URL + image.name
         self.object.save()

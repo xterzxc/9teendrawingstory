@@ -14,4 +14,14 @@
     </div>
     <script src="{% static 'js/index.js' %}"></script>
 
+    <div class="grid">
+        {% for image in images %}
+        <div class="grid-item">
+            <img src="{{ image.imglink }}" alt="{{ image.title }}">
+            <h3>{{ image.title }}</h3>
+        </div>
+        {% empty %}
+        <p>No images available.</p>
+        {% endfor %}
+    </div>
 {% endblock content %}
