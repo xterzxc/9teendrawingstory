@@ -38,11 +38,12 @@ class CF_ACCESS():
                 headers=put_headers,
                 auth=self.authorization,
             )
-            print(f"Upload failed: {response.text}")
+
             if response.status_code != 200:
                 return {'error': 'Failed to upload image'}, 500
             return {'message': 'Image uploaded'}, 200
         except requests.RequestException as e:
+            print(f"RequestException: {e}")
             return {'error': 'Error while uploading image'}, 500
         
     
