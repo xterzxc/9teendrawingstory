@@ -6,7 +6,7 @@
 {% block head %}
     <link rel="stylesheet" href="{% static 'css/index.css'%}">
 {% endblock %}
-    
+
 {% block content %}
 
     <div class="container">
@@ -17,7 +17,12 @@
     <div class="grid">
         {% for image in images %}
         <div class="grid-item">
-            <img src="{{ image.imglink }}" alt="{{ image.title }}">
+            <div class="drawing-container">
+                <img src="{{ image.imglink }}" alt="{{ image.title }}">
+                <div class="avatar-overlay">
+                    <!-- <img class="avatar-img" src="{{user.avatarlink }}" alt="User Avatar">-->
+                </div>
+            </div>
             <h3>{{ image.title }}</h3>
         </div>
         {% endfor %}
