@@ -158,6 +158,6 @@ CF_REGION = 'us-east-1'
 CF_SERVICE = 's3'
 
 
-LOGIN_REDIRECT_URL = "index"
+LOGIN_REDIRECT_URL = "index" 
 LOGOUT_REDIRECT_URL = "index"
 AUTH_USER_MODEL = 'users.User'

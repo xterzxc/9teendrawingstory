@@ -12,7 +12,7 @@
     </div>  
     {% if user.is_authenticated %}
         <div class="profile-circle">
-            <img src="{{ user.profile.image.url }}" alt="Profile">
+            <img src="{{ user.avatarlink }}" alt="Profile">
         </div>
         <form action="{% url 'logout' %}" method="post" class="form-button">
             {% csrf_token %}

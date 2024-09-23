@@ -4,7 +4,7 @@ from django.views.generic.edit import CreateView
 from .models import Drawing
 from django.http import JsonResponse
 from ntds.settings import CF_GET_URL
-from .utils import CF_ACCESS
+from ntds.utils import CF_ACCESS
 
 def DrawingView(request):
     return render(request, 'draw/draw.html')
