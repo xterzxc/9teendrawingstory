@@ -32,19 +32,15 @@ class CF_ACCESS():
     
     def delete(self, image):
 
-        delete_headers = {
-            'Content-Type': image.content_type,
-        }
 
         try:
             response = requests.delete(
-                self.url + image.name,
+                self.url + image,
                 data=image,
-                headers=delete_headers,
                 auth=self.authorization,
             )
 
-            if response.status_code != 200:
+            if response.status_code != 204:
                 return {'error': 'Failed to delete image'}, 500
             return {'message': 'Image deleted'}, 200
         except requests.RequestException as e:
