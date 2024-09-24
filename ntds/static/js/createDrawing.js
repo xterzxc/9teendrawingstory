@@ -233,3 +233,13 @@ function initializeCanvas() {
         redoStack = JSON.parse(savedRedoStack);
     }
 }
+
+function downloadCanvasImage() {
+    const canvas = document.getElementById('canvas');
+    const link = document.createElement('a');
+    link.href = canvas.toDataURL('image/png');
+    link.download = 'drawing.png';
+    link.click(); 
+}
+
+document.getElementById('download').addEventListener('click', downloadCanvasImage);

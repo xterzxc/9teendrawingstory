@@ -28,7 +28,9 @@ html, body {
     display: flex;
     gap: 25px;
     padding-right: 25px;
+    align-items: center;
 }
+
 
 @media (max-width: 480px) {
     .topbar-controls {
@@ -211,6 +213,8 @@ input:checked + .slider:before {
     width: 36px;
     height: 36px;
 }
+
+
 
 .undo, .redo {
     width: 36px;
