@@ -18,3 +18,45 @@ function displayRandomQuote() {
 }
 
 window.onload = displayRandomQuote;
+
+let currentPage = 1;  // Текущая страница
+let loading = false;  // Флаг загрузки
+let hasNextPage = true;  // Есть ли еще страницы для загрузки
+
+window.onscroll = function() {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
+        loadMoreImages();
+    }
+};
+
+function loadMoreImages() {
+    if (!hasNextPage) return;
+
+    currentPage++;
+
+    fetch(`/load-drawings/?page=${currentPage}`)
+        .then(response => response.json())
+        .then(data => {
+            const grid = document.getElementById('grid');
+            data.data.forEach(image => {
+                const gridItem = document.createElement('div');
+                gridItem.classList.add('grid-item');
+
+                gridItem.innerHTML = `
+                    <div class="drawing-container">
+                        <img src="${image.imglink}" alt="${image.title}">
+                        <div class="avatar-overlay">
+                            <img class="avatar-img" src="${image.avatarlink}" alt="User Avatar">
+                        </div>
+                    </div>
+                    <h3>${image.title}</h3>
+                `;
+                grid.appendChild(gridItem);
+            });
+
+            hasNextPage = data.has_next;
+        })
+        .catch(error => {
+            console.error('Error loading more images:', error);
+        });
+}
