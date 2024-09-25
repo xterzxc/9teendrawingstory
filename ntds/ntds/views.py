@@ -12,7 +12,7 @@ class IndexView(TemplateView):
         context = super().get_context_data(**kwargs)
     
         drawings = Drawing.objects.all().order_by('?') # change logic later
-        paginator = Paginator(drawings, 6)
+        paginator = Paginator(drawings, 9)
         page_obj = paginator.get_page(1)
         context['images'] = page_obj
         context['has_next'] = page_obj.has_next()
