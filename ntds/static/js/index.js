@@ -19,16 +19,21 @@ function displayRandomQuote() {
 
 window.onload = displayRandomQuote;
 
-let currentPage = 1;  // Текущая страница
-let loading = false;  // Флаг загрузки
-let hasNextPage = true;  // Есть ли еще страницы для загрузки
+let currentPage = 1;
+let hasNextPage = true;
+let isThrottling = false;
 
 window.onscroll = function() {
+    if (isThrottling) return;
+
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
-        loadMoreImages();
+        isThrottling = true;
+        setTimeout(function() {
+            loadMoreImages();
+            isThrottling = false;
+        }, 300);
     }
 };
-
 function loadMoreImages() {
     if (!hasNextPage) return;
 
