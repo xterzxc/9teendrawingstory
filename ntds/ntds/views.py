@@ -3,6 +3,7 @@ from draw.models import Drawing
 from django.http import JsonResponse
 from django.core.paginator import Paginator
 from .utils import CF_ACCESS
+from django.db.models import F
 
 class IndexView(TemplateView):
     template_name = "base/index.html"
@@ -10,7 +11,7 @@ class IndexView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
     
-        drawings = Drawing.objects.all().order_by('created_at') # change logic later
+        drawings = Drawing.objects.all().order_by('?') # change logic later
         paginator = Paginator(drawings, 6)
         page_obj = paginator.get_page(1)
         context['images'] = page_obj
@@ -20,9 +21,8 @@ class IndexView(TemplateView):
 
 class LoadDrawingsView(TemplateView):
     def get(self, request):
-        page_number = request.GET.get('page')
-        print(f'asked for {page_number}')
-        drawings = Drawing.objects.all().order_by('created_at') # change logic later
+        page_number = int(request.GET.get('page', 1))
+        drawings = Drawing.objects.all().order_by('?') # change logic later
         
         paginator = Paginator(drawings, 6)
         page_obj = paginator.get_page(page_number)

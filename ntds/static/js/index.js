@@ -21,18 +21,13 @@ window.onload = displayRandomQuote;
 
 let currentPage = 1;
 let hasNextPage = true;
-let isThrottling = false;
 
 window.onscroll = function() {
-    if (isThrottling) return;
-
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
-        isThrottling = true;
-        setTimeout(function() {
+    window.onscroll = _.throttle(function() {
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
             loadMoreImages();
-            isThrottling = false;
-        }, 300);
-    }
+        }
+    }, 300);
 };
 function loadMoreImages() {
     if (!hasNextPage) return;
