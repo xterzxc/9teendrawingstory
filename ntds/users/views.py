@@ -4,9 +4,11 @@ from .forms import UserCreateForm
 from django.contrib.auth.views import LoginView
 from django.views.generic.edit import UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import User
+from .models import User,Image
 from django.http import JsonResponse
 from ntds.utils import CF_ACCESS
+from django.views.generic import DetailView
+
 
 class SignUpView(CreateView):
     form_class = UserCreateForm
@@ -49,3 +51,11 @@ class ChangeAvatarView(LoginRequiredMixin, UpdateView):
             # user.avatarimage = peredannyj image
             user.save()
             return JsonResponse({'message': 'Avatar changed'}, status=200)
+        
+class ImageDetailView(DetailView):
+    model = Image
+    template_name = 'users/image_detail.html'  
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context

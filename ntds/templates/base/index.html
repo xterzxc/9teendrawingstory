@@ -15,12 +15,14 @@
     <div class="grid" id="grid">
         {% for image in images %}
         <div class="grid-item">
+            <a href="{% url 'image_detail' image.id %}">
             <div class="drawing-container">
                 <img src="{{ image.imglink }}" alt="{{ image.title }}">
                 <div class="avatar-overlay">
                     <img class="avatar-img" src="{{ image.owner.avatarlink }}" alt="User Avatar">
                 </div>
             </div>
+        </a>
             <h3>{{ image.title }}</h3>
         </div>
         {% endfor %}
