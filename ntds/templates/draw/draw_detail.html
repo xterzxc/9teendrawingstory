@@ -1,0 +1,10 @@
+{% load static %}
+<div class="grid-item">
+    <div class="drawing-container">
+        <img src="{{ drawing.imglink }}" alt="{{ drawing.title }}">
+        <div class="avatar-overlay">
+            <img class="avatar-img" src="{{ drawing.owner.avatarlink }}" alt="User Avatar">
+        </div>
+    </div>
+    <h3>{{ drawing.title }}</h3>
+</div>

@@ -5,6 +5,8 @@ from .models import Drawing
 from django.http import JsonResponse
 from ntds.settings import CF_GET_URL
 from ntds.utils import CF_ACCESS
+from django.views.generic import DetailView
+from django.shortcuts import get_object_or_404
 
 def DrawingView(request):
     return render(request, 'draw/draw.html')
@@ -40,3 +42,12 @@ class DrawingCreateView(CreateView, CF_ACCESS):
     def form_invalid(self, form):
         return JsonResponse({'errors': form.errors}, status=400)
     
+
+
+class DrawingDetailView(DetailView):
+    model = Drawing
+    template_name = 'draw/draw_detail.html'  
+
+    def get_object(self, queryset=None):
+        pagelink = self.kwargs.get('pagelink')
+        return get_object_or_404(Drawing, pagelink=pagelink)

@@ -15,7 +15,7 @@
     <div class="grid" id="grid">
         {% for image in images %}
         <div class="grid-item">
-            <a href="{% url 'image_detail' image.id %}">
+            <a href="{% url 'draw-detail' image.pagelink %}">
             <div class="drawing-container">
                 <img src="{{ image.imglink }}" alt="{{ image.title }}">
                 <div class="avatar-overlay">
