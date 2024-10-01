@@ -7,58 +7,30 @@ from django.core.management.base import BaseCommand
 from ntds.utils import CF_ACCESS
 
 
-FOLDER = 'static/images/drawings/'
-User = get_user_model()
-
 class Command(BaseCommand):
-    help = 'Creating N users with N drawings'
-
-    def add_arguments(self, parser):
-        parser.add_argument('users', type=int, help='users to create')
-        parser.add_argument('drawings', type=int, help='d1rawings to create per user')
+    help = 'Delete all Drawing objects from the database and non admin users'
 
     def handle(self, *args, **kwargs):
-        users = kwargs['users']
-        drawings = kwargs['drawings']
-        
+        drawings = Drawing.objects.all()
+        drawings_count = drawings.count()
 
-        fake = Faker()
 
-        images = [f for f in os.listdir(FOLDER) if os.path.isfile(os.path.join(FOLDER, f))]
-        images_backup = images.copy()
 
-        if not images:
-            self.stdout.write(self.style.ERROR(f'Folder {FOLDER} empty'))
+        if drawings_count == 0:
+            self.stdout.write(self.style.WARNING('No drawings found to delete.'))
             return
 
 
-        for _ in range(users):
-            user = User.objects.create_user(
-                username=fake.user_name(),
-                email=fake.email(),
-                password='password123'
-            )
-            self.stdout.write(self.style.SUCCESS(f'User: {user.username}'))
+        cf_access = CF_ACCESS()
+        for drawing in drawings:
+            cf_delete, status_code = cf_access.delete(drawing.imgname)
+            if status_code != 200:
+                self.stdout.write(self.style.ERROR(f"Failed to delete drawing {drawing}"))
+                continue
 
-            for _ in range(drawings):
-                if len(images) == 0:
-                    images = images_backup.copy()
+            if not drawing.owner.is_superuser:  
+                drawing.owner.delete()
+            drawing.delete()
+            self.stdout.write(self.style.SUCCESS(f'Deleted drawing {drawing.title} and user {drawing.owner}'))
 
-                random_image = random.choice(images)
-                image_link = os.path.join(FOLDER, random_image)
-                images.remove(random_image)
-
-                cf_access = CF_ACCESS()
-                cf_upload = cf_access.put(image)
-                
-                drawing = Drawing.objects.create(
-                    owner=user,
-                    title=fake.sentence(nb_words=3),
-                    description=fake.text(max_nb_chars=100),
-                    likes=random.randint(0, 100),
-                    imgname=random_image,
-                    imglink=image_link,
-                )
-                self.stdout.write(self.style.SUCCESS(f'Created drawing: {drawing.title} for user {user.username}'))
-
-        self.stdout.write(self.style.SUCCESS(f'Success {users} {drawings}'))
+        self.stdout.write(self.style.SUCCESS(f'Success deleted {drawings_count} drawings.'))
