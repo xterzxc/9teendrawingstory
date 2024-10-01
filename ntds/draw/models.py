@@ -12,16 +12,14 @@ class Drawing(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     imgname = models.CharField(max_length=64)
     imglink = models.URLField()
-
-
+    def add_like(self):
+        likes = self.likes + 1
 
     def save(self, *args, **kwargs):
-        # Проверяем, есть ли у объекта уже ID (pk)
-        if not self.pk:  # Первое сохранение объекта, когда ID ещё нет
-            super().save(*args, **kwargs)  # Сохраняем объект для генерации ID
-            self.pagelink = generate_link(self.id)  # Генерируем ссылку на основе ID
-            # Второй раз сохраняем только с полем pagelink
-            super().save(update_fields=['pagelink'])  # Сохраняем только поле pagelink
+        if not self.pk:
+            super().save(*args, **kwargs)
+            self.pagelink = generate_link(self.id)
+            super().save(update_fields=['pagelink'])
         else:
             super().save(*args, **kwargs)
 
