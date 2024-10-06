@@ -212,6 +212,32 @@ function initializeCanvas() {
             } else if ((e.ctrlKey && e.key === 'y') || e.code === 'KeyY') {
                 e.preventDefault();
                 redo();
+            } else if (e.key === 'g' || e.code === 'KeyG') {
+                e.preventDefault();
+                modeSwitch.checked = !modeSwitch.checked;
+                isDrawingMode = !modeSwitch.checked;
+            } else if (e.key === 'c' || e.code === 'KeyC') {
+                e.preventDefault();
+                clear();
+            } else if (e.key === 's' || e.code === 'KeyS') {
+                e.preventDefault();
+                colorPicker.click();
+            }
+        }
+    });
+
+
+    document.addEventListener('wheel', function(e) {
+        const isModalOpen = modal.classList.contains('show');
+    
+        if (!isModalOpen) {
+            let currentLineWidth = parseInt(lineWidth.value);
+            if (e.deltaY > 0) {
+                lineWidth.value = Math.max(1, currentLineWidth - 1);
+                context.lineWidth = lineWidth.value;
+            } else if (e.deltaY < 0) {
+                lineWidth.value = Math.min(100, currentLineWidth + 1);
+                context.lineWidth = lineWidth.value;
             }
         }
     });

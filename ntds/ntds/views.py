@@ -32,7 +32,8 @@ class LoadDrawingsView(TemplateView):
             data.append({
                 'imglink': drawing.imglink,
                 'title': drawing.title,
-                'avatarlink': drawing.owner.avatarlink
+                'avatarlink': drawing.owner.avatarlink,
+                'pagelink': drawing.pagelink,
             })
         
         return JsonResponse({

@@ -1,0 +1,46 @@
+html, body {
+    margin: 0;
+    background-color: #272727;
+}
+
+.grid-item {
+    display: flex;
+    align-items: center;
+    margin: 1em;
+}
+
+.drawing-container {
+    position: relative;
+    margin-right: 10px;
+}
+
+.drawing {
+    margin-left: 3%;
+    margin-top: 3%;
+    max-width: 1280px;
+    max-height: 720px;
+    border: 5px solid #534d4d;
+    border-radius: 30px;
+    padding: 5px;
+}
+
+.avatar-overlay {
+    position: absolute; 
+    top: 15%;
+    right: -325px;
+    width: 150px;
+    height: auto;
+    text-align: center;
+}
+
+.avatar-img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+h3 {
+    color: white;
+    font-size: 32px;
+    margin-top: 10px;
+}

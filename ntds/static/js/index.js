@@ -52,14 +52,16 @@ function loadMoreImages() {
             data.data.forEach(image => {
                 const gridItem = document.createElement('div');
                 gridItem.classList.add('grid-item');
-
+                
                 gridItem.innerHTML = `
-                    <div class="drawing-container">
-                        <img src="${image.imglink}" alt="${image.title}">
-                        <div class="avatar-overlay">
-                            <img class="avatar-img" src="${image.avatarlink}" alt="User Avatar">
+                    <a href="draw/${image.pagelink}">
+                        <div class="drawing-container">
+                            <img src="${image.imglink}" alt="${image.title}">
+                            <div class="avatar-overlay">
+                                <img class="avatar-img" src="${image.avatarlink}" alt="User Avatar">
+                            </div>
                         </div>
-                    </div>
+                    </a>
                     <h3>${image.title}</h3>
                 `;
                 grid.appendChild(gridItem);

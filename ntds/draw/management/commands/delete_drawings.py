@@ -6,7 +6,7 @@ import os
 from django.core.management.base import BaseCommand
 from ntds.utils import CF_ACCESS
 
-
+# flag users чтобы удалять юзеров
 class Command(BaseCommand):
     help = 'Delete all Drawing objects from the database and non admin users'
 

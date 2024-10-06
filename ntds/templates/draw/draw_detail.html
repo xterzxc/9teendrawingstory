@@ -1,10 +1,18 @@
+{% extends 'base/base.html' %}
 {% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/draw-detail.css' %}">
+{% endblock head %}
+
+{% block content %}
 <div class="grid-item">
     <div class="drawing-container">
-        <img src="{{ drawing.imglink }}" alt="{{ drawing.title }}">
+        <img class='drawing' src="{{ drawing.imglink }}" alt="{{ drawing.title }}">
         <div class="avatar-overlay">
             <img class="avatar-img" src="{{ drawing.owner.avatarlink }}" alt="User Avatar">
+            <h3>{{ drawing.title }}</h3>
         </div>
     </div>
-    <h3>{{ drawing.title }}</h3>
 </div>
+{% endblock content %}
