@@ -5,6 +5,7 @@ from django.contrib.auth.views import LoginView
 from django.views.generic.edit import UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import User
+from django.views.generic import TemplateView
 from django.http import JsonResponse
 from ntds.utils import CF_ACCESS
 
@@ -50,4 +51,8 @@ class ChangeAvatarView(LoginRequiredMixin, UpdateView):
             # user.avatarimage = peredannyj image
             user.save()
             return JsonResponse({'message': 'Avatar changed'}, status=200)
-        
+
+
+class ProfilePageView(TemplateView):
+    model = User
+    template_name = "users/user-profile.html"

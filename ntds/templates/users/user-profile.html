@@ -1,0 +1,184 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}
+{{ user.username }}
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/user-profile.css'%}">
+{% endblock %}
+
+{% block content %}
+<div class="user-profile">
+    <div class="profile-card">
+        <h1 class="profile-card__title">{{ user.username }}</h1>
+        <p class="profile-card__subtitle">{{ user.username }}</p>
+        <img class="profile-card__avatar" src="{{ user.avatarlink }}" alt="Avatar for Bart Veneman">
+    </div>
+
+    <div class="profile-projects">
+        <ol class="cards">
+            <li>
+                <a class="card" href="">
+                    <h4 class="card__title">Mobile Twitter</h4>
+                    <p class="card__meta">Updated <time datetime="2024-10-06">4 hours ago</time></p>
+                </a>
+            </li>
+            <li>
+                <a class="card" href="">
+                    <h4 class="card__title">CodePen.io</h4>
+                    <p class="card__meta">Updated <time datetime="2024-10-06">4 hours ago</time></p>
+                </a>
+            </li>
+            <li>
+                <a class="card" href="">
+                    <h4 class="card__title">CodePen Pen Page</h4>
+                    <p class="card__meta">Updated <time datetime="2024-10-06">4 hours ago</time></p>
+                </a>
+            </li>
+            <li>
+                <a class="card" href="">
+                    <h4 class="card__title">Tweakers.net</h4>
+                    <p class="card__meta">Updated <time datetime="2024-10-06">4 hours ago</time></p>
+                </a>
+            </li>
+            <li>
+                <a class="card" href="">
+                    <h4 class="card__title">NU.nl</h4>
+                    <p class="card__meta">Updated <time datetime="2024-10-06">4 hours ago</time></p>
+                </a>
+            </li>
+            <li>
+                <a class="card" href="">
+                    <h4 class="card__title">Blendle</h4>
+                    <p class="card__meta">Updated <time datetime="2024-10-06">4 hours ago</time></p>
+                </a>
+            </li>
+            <li>
+                <a class="card" href="">
+                    <h4 class="card__title">Adwise.nl</h4>
+                    <p class="card__meta">Updated <time datetime="2024-10-06">4 hours ago</time></p>
+                </a>
+            </li>
+            <li>
+                <a class="card" href="">
+                    <h4 class="card__title">Catawiki</h4>
+                    <p class="card__meta">Updated <time datetime="2024-10-06">4 hours ago</time></p>
+                </a>
+            </li>
+            <li>
+                <a class="card" href="">
+                    <h4 class="card__title">LEGO.com</h4>
+                    <p class="card__meta">Updated <time datetime="2024-10-06">4 hours ago</time></p>
+                </a>
+            </li>
+            <li>
+                <a class="card" href="">
+                    <h4 class="card__title">Trello</h4>
+                    <p class="card__meta">Updated <time datetime="2024-10-06">4 hours ago</time></p>
+                </a>
+            </li>
+            <li>
+                <a class="card" href="">
+                    <h4 class="card__title">Marktplaats</h4>
+                    <p class="card__meta">Updated <time datetime="2024-10-06">4 hours ago</time></p>
+                </a>
+            </li>
+            <li>
+                <a class="card" href="">
+                    <h4 class="card__title">Schiphol</h4>
+                    <p class="card__meta">Updated <time datetime="2024-10-06">4 hours ago</time></p>
+                </a>
+            </li>
+            <li>
+                <a class="card" href="">
+                    <h4 class="card__title">Facebook.com</h4>
+                    <p class="card__meta">Updated <time datetime="2024-10-06">4 hours ago</time></p>
+                </a>
+            </li>
+            <li>
+                <a class="card" href="">
+                    <h4 class="card__title">NOS.nl</h4>
+                    <p class="card__meta">Updated <time datetime="2024-10-06">4 hours ago</time></p>
+                </a>
+            </li>
+            <li>
+                <a class="card" href="">
+                    <h4 class="card__title">Twitter</h4>
+                    <p class="card__meta">Updated <time datetime="2024-10-06">4 hours ago</time></p>
+                </a>
+            </li>
+            <li>
+                <a class="card" href="">
+                    <h4 class="card__title">GitHub</h4>
+                    <p class="card__meta">Updated <time datetime="2024-10-06">4 hours ago</time></p>
+                </a>
+            </li>
+            <li>
+                <a class="card" href="">
+                    <h4 class="card__title">Beslist.nl</h4>
+                    <p class="card__meta">Updated <time datetime="2024-10-06">4 hours ago</time></p>
+                </a>
+            </li>
+            <li>
+                <a class="card" href="">
+                    <h4 class="card__title">Project Wallace</h4>
+                    <p class="card__meta">Updated <time datetime="2024-10-06">4 hours ago</time></p>
+                </a>
+            </li>
+            <li>
+                <a class="card" href="">
+                    <h4 class="card__title">CSS Tricks</h4>
+                    <p class="card__meta">Updated <time datetime="2024-10-06">4 hours ago</time></p>
+                </a>
+            </li>
+            <li>
+                <a class="card" href="">
+                    <h4 class="card__title">Syntax.fm</h4>
+                    <p class="card__meta">Updated <time datetime="2024-10-06">4 hours ago</time></p>
+                </a>
+            </li>
+            <li>
+                <a class="card" href="">
+                    <h4 class="card__title">Wikipedia.org</h4>
+                    <p class="card__meta">Updated <time datetime="2024-10-06">4 hours ago</time></p>
+                </a>
+            </li>
+            <li>
+                <a class="card" href="">
+                    <h4 class="card__title">The Guardian</h4>
+                    <p class="card__meta">Updated <time datetime="2024-10-06">4 hours ago</time></p>
+                </a>
+            </li>
+            <li>
+                <a class="card" href="">
+                    <h4 class="card__title">Stackoverflow.com</h4>
+                    <p class="card__meta">Updated <time datetime="2024-10-06">4 hours ago</time></p>
+                </a>
+            </li>
+            <li>
+                <a class="card" href="">
+                    <h4 class="card__title">Amazon.com</h4>
+                    <p class="card__meta">Updated <time datetime="2024-10-06">4 hours ago</time></p>
+                </a>
+            </li>
+            <li>
+                <a class="card" href="">
+                    <h4 class="card__title">Smashing Magazine</h4>
+                    <p class="card__meta">Updated <time datetime="2024-10-06">4 hours ago</time></p>
+                </a>
+            </li>
+            <li>
+                <a class="card" href="">
+                    <h4 class="card__title">GitLab</h4>
+                    <p class="card__meta">Updated <time datetime="2024-10-06">4 hours ago</time></p>
+                </a>
+            </li>
+            <li>
+                <a class="card" href="">
+                    <h4 class="card__title">Coolblue</h4>
+                    <p class="card__meta">Updated <time datetime="2024-10-06">4 hours ago</time></p>
+                </a>
+            </li>
+{% endblock %}
