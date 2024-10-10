@@ -11,9 +11,11 @@
         <a href="{% url 'draw'%}" > - Draw -</a>
     </div>  
     {% if user.is_authenticated %}
+        <a href="{% url 'profile-detail' user.username %}">
         <div class="profile-circle">
-            <img src="{{ user.avatarlink }}" alt="Profile">
+                <img src="{{ user.avatarlink }}" alt="Profile">
         </div>
+        </a>
         <form action="{% url 'logout' %}" method="post" class="form-button">
             {% csrf_token %}
             <button type="submit">Log Out</button>

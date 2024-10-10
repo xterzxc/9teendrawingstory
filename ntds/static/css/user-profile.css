@@ -104,7 +104,7 @@ body {
     flex-direction: column;
     color: inherit;
     background-color: var(--white);
-    color: white;
+    color: #272727;
     text-decoration: none;
     padding: 20px;
     height: 8em;
