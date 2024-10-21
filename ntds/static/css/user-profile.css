@@ -77,10 +77,8 @@ body {
     height: 100px;
 }
 
-/* PROJECTS */
 .profile-projects h2 {
-    display: none; /* Скрыть заголовок h2 */
-}
+    display: none;}
 
 .cards {
     padding: 0 20px;
@@ -109,6 +107,9 @@ body {
     padding: 20px;
     height: 8em;
     box-shadow: 0 2px 4px rgba(var(--coal), .2);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .card:hover {
