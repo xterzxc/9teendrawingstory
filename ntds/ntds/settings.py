@@ -7,7 +7,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 dotenv_path = os.path.join(BASE_DIR, '.env')
 if os.path.exists(dotenv_path):
     load_dotenv(dotenv_path)
-
+else:
+    load_dotenv('/etc/secrets/.env')
 
 
 SECRET_KEY = os.getenv('SECRET_KEY')
