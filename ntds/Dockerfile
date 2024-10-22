@@ -24,4 +24,6 @@ RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env python -c "import os; from
 RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env python manage.py makemigrations
 RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env python manage.py migrate
 
+RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env python manage.py collectstatic --noinput
+
 ENTRYPOINT ["gunicorn", "--chdir", "/app/ntds", "ntds.wsgi:application", "-b", "0.0.0.0:8000"]
