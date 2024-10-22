@@ -14,7 +14,6 @@ else:
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
-DEBUG_TOOLBAR = os.getenv('DEBUG_TOOLBAR', 'False') == 'True'
 
 ALLOWED_HOSTS = ['*']
 
@@ -30,7 +29,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'draw',
-    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -44,11 +42,35 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-if DEBUG_TOOLBAR:
-    MIDDLEWARE.insert(
-        MIDDLEWARE.index('django.contrib.auth.middleware.AuthenticationMiddleware'),
-        'debug_toolbar.middleware.DebugToolbarMiddleware'
+if DEBUG:
+    INTERNAL_IPS = ('127.0.0.1',)
+    MIDDLEWARE += (
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
     )
+
+    INSTALLED_APPS += (
+        'debug_toolbar',
+    )
+
+    DEBUG_TOOLBAR_PANELS = [
+        'debug_toolbar.panels.versions.VersionsPanel',
+        'debug_toolbar.panels.timer.TimerPanel',
+        'debug_toolbar.panels.settings.SettingsPanel',
+        'debug_toolbar.panels.headers.HeadersPanel',
+        'debug_toolbar.panels.request.RequestPanel',
+        'debug_toolbar.panels.sql.SQLPanel',
+        'debug_toolbar.panels.staticfiles.StaticFilesPanel',
+        'debug_toolbar.panels.templates.TemplatesPanel',
+        'debug_toolbar.panels.cache.CachePanel',
+        'debug_toolbar.panels.signals.SignalsPanel',
+        'debug_toolbar.panels.logging.LoggingPanel',
+        'debug_toolbar.panels.redirects.RedirectsPanel',
+    ]
+
+    DEBUG_TOOLBAR_CONFIG = {
+        'INTERCEPT_REDIRECTS': False,
+    }
+
 
 
 ROOT_URLCONF = 'ntds.urls'

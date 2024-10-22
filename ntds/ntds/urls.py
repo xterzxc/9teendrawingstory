@@ -1,5 +1,5 @@
 import debug_toolbar
-from .settings import DEBUG_TOOLBAR
+from .settings import DEBUG
 from django.contrib import admin
 from django.urls import path, include
 from .views import IndexView, LoadDrawingsView
@@ -13,5 +13,5 @@ urlpatterns = [
     path('load-drawings/', LoadDrawingsView.as_view(), name='load-drawings'),
 ]
 
-if DEBUG_TOOLBAR:
+if DEBUG:
     urlpatterns += [path('__debug__/', include(debug_toolbar.urls))]
